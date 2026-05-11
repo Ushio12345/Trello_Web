@@ -36,6 +36,13 @@ module.exports = {
   plugins: ["react", "react-hooks", "react-refresh"],
 
   rules: {
+     "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [{ "regex": "^@mui/[^/]+$" }]
+      }
+    ]
+  },
     // Cảnh báo nếu export sai với React Refresh
     "react-refresh/only-export-components": "warn",
 
