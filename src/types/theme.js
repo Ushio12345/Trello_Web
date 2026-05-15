@@ -1,5 +1,9 @@
 import { extendTheme } from "@mui/material/styles";
-
+const APP_BAR_HEIGHT = "58px";
+const BOARD_BAR_HEIGHT = "60px";
+const BOARD_CONTENT_HEIGHT = `calc(100vh - ${APP_BAR_HEIGHT} - ${BOARD_BAR_HEIGHT})`;
+const COL_HEADER_HEIGHT = "50px";
+const COL_FOOTER_HEIGHT = "56px";
 const theme = extendTheme({
   colorSchemeSelector: "class",
   colorSchemes: {
@@ -125,29 +129,6 @@ const theme = extendTheme({
           primary: "#F8FAFC",
           secondary: "#CBD5E1",
         },
-
-        custom: {
-          sidebar: "#020617",
-          sidebarHover: "#1E293B",
-
-          card: "#1E293B",
-          border: "#334155",
-
-          active: "#3B82F6",
-          inactive: "#64748B",
-
-          online: "#22C55E",
-          offline: "#64748B",
-
-          pending: "#F59E0B",
-          approved: "#22C55E",
-          rejected: "#EF4444",
-
-          occupied: "#3B82F6",
-          available: "#10B981",
-          maintenance: "#EF4444",
-          cleaning: "#8B5CF6",
-        },
       },
     },
   },
@@ -223,74 +204,93 @@ const theme = extendTheme({
 
   // ===== COMPONENTS =====
   components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          // Tự động lấy màu text secondary của theme hiện tại
+          "& label": { color: theme.palette.text.secondary },
+          "& label.Mui-focused": { color: theme.palette.primary.main },
+          "& .MuiInputBase-input": { fontSize: "0.9rem" },
+          "& .MuiOutlinedInput-root": {
+            borderRadius: "5px",
+          },
+        }),
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          borderRadius: theme.shape.borderRadius,
+          // fieldset là cái đường viền của OutlinedInput
+          "& fieldset": {
+            borderColor: theme.palette.mode === "light" ? "#E5E7EB" : "#334155",
+          },
+          "&:hover fieldset": {
+            borderColor: `${theme.palette.primary.main} !important`,
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: `${theme.palette.primary.main} !important`,
+            borderWidth: "1px !important",
+          },
+        }),
+      },
+    },
     MuiButton: {
       styleOverrides: {
-        root: {
-          borderRadius: 12,
-          padding: "10px 20px",
+        root: ({ theme }) => ({
+          borderRadius: "5px",
+          padding: "5px 20px",
           fontWeight: 600,
           textTransform: "none",
           boxShadow: "none",
-        },
-
-        contained: {
-          "&:hover": {
-            backgroundColor: "#1D4ED8",
-          },
-        },
+        }),
       },
     },
-
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: 20,
-          backgroundColor: "#FFFFFF",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
-        },
-      },
-    },
-
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          backgroundImage: "none",
-        },
-      },
-    },
-
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          "& .MuiOutlinedInput-root": {
-            borderRadius: 12,
-          },
-        },
-      },
-    },
-
-    MuiDrawer: {
-      styleOverrides: {
-        paper: {
-          backgroundColor: "#172554",
-          color: "#FFFFFF",
-        },
-      },
-    },
-
     MuiAppBar: {
       styleOverrides: {
-        root: {
-          backgroundColor: "#FFFFFF",
-          color: "#111827",
-          boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
-        },
+        root: ({ theme }) => ({
+          // AppBar sẽ trắng ở Light và tối ở Dark
+          backgroundColor: theme.palette.background.paper,
+          color: theme.palette.text.primary,
+          boxShadow:
+            theme.palette.mode === "light"
+              ? "0 2px 10px rgba(0,0,0,0.05)"
+              : "none",
+        }),
       },
     },
   },
+  MuiCssBaseline: {
+    styleOverrides: (theme) => ({
+      body: {
+        // Tùy chỉnh thanh cuộn cho toàn bộ trang web
+        "*::-webkit-scrollbar": {
+          width: "5px",
+          height: "5px",
+        },
+        "*::-webkit-scrollbar-thumb": {
+          backgroundColor:
+            theme.palette.mode === "dark" ? "#4b5563" : "#d1d5db",
+          borderRadius: "5px",
+        },
+        "*::-webkit-scrollbar-thumb:hover": {
+          backgroundColor:
+            theme.palette.mode === "dark" ? "#6b7280" : "#9ca3af",
+        },
+        // Tùy chỉnh màu nền của đường dẫn thanh cuộn (track)
+        "*::-webkit-scrollbar-track": {
+          backgroundColor: "transparent",
+          margin: 2,
+        },
+      },
+    }),
+  },
   trello: {
-    appBarHeight: "58px",
-    boardBarHeight: "60px",
+    appBarHeight: APP_BAR_HEIGHT,
+    boardBarHeight: BOARD_BAR_HEIGHT,
+    boardContentHeight: BOARD_CONTENT_HEIGHT,
+    columnHeaderHeight: COL_HEADER_HEIGHT,
+    columnFooterHeight: COL_FOOTER_HEIGHT,
   },
 });
 

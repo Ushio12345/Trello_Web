@@ -1,6 +1,6 @@
 import { AppBar, Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import Boards from "../../pages/Boards";
+import Boards from "../../pages/Boards/BoardBar/BoardBar";
 const MainLayout = () => {
   return (
     <Box sx={{ height: "100vh", display: "flex", flexDirection: "column" }}>
