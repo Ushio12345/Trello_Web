@@ -9,6 +9,9 @@ import Avatar from "@mui/material/Avatar";
 import AvatarGroup from "@mui/material/AvatarGroup";
 import { Button, Tooltip } from "@mui/material";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { Board } from "@/constants/types/BoardType";
+import { capitalizeFirstLetter } from "@/utils/formatText";
+
 const MENU_STYLE = {
   px: "5px",
   color: "primary.main",
@@ -22,7 +25,12 @@ const MENU_STYLE = {
     bgcolor: "primary.50",
   },
 };
-const BoardBar = () => {
+
+type BoardBarProps = { board: Board };
+const BoardBar = ({ board }: BoardBarProps) => {
+  const { title, type } = board;
+  console.log(board);
+
   return (
     <Box
       sx={{
@@ -43,13 +51,13 @@ const BoardBar = () => {
       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
         <Chip
           icon={<DashboardIcon />}
-          label="MERN Stack Board"
+          label={title}
           sx={MENU_STYLE}
           clickable
         />
         <Chip
           icon={<VpnLockOutlinedIcon />}
-          label="Public/Private Workplaces"
+          label={capitalizeFirstLetter(type)}
           sx={MENU_STYLE}
           clickable
         />

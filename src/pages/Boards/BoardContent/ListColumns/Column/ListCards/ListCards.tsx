@@ -1,7 +1,12 @@
 import Box from "@mui/material/Box";
 import Card from "./Card/Card";
+import { Card as CardType } from "@/constants/types/BoardType";
+type ListCardProps = {
+  cards: CardType[];
+};
+const ListCards = ({ cards }: ListCardProps) => {
+  console.log(cards);
 
-const ListCards = () => {
   return (
     <Box
       sx={{
@@ -32,11 +37,9 @@ const ListCards = () => {
         },
       }}
     >
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {cards.map((c) => (
+        <Card key={c._id} card={c} />
+      ))}
     </Box>
   );
 };

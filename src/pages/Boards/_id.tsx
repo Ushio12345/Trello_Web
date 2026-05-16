@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import AppBar from "@/components/AppBar/AppBar";
 import BoardBar from "./BoardBar/BoardBar";
 import BoardContent from "./BoardContent/BoardContent";
-
+import { mockData } from "@/apis/mock-data";
 function Board() {
   return (
     <Box
@@ -18,8 +18,8 @@ function Board() {
       }}
     >
       <AppBar />
-      <BoardBar />
-      <BoardContent />
+      <BoardBar board={mockData?.board} />
+      <BoardContent board={mockData?.board} />
     </Box>
   );
 }

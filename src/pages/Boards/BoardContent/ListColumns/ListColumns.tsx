@@ -3,7 +3,14 @@ import React from "react";
 import { Box, Button } from "@mui/material";
 import Column from "./Column/Column";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
-const ListColumns = () => {
+import { Column as ColumnType } from "@/constants/types/BoardType";
+import { log } from "node:console";
+type ListColumnsProps = {
+  cols: ColumnType[];
+};
+const ListColumns = ({ cols }: ListColumnsProps) => {
+  // console.log(cols);
+
   return (
     <Box
       sx={{
@@ -16,8 +23,10 @@ const ListColumns = () => {
         "&::-webkit-scrollbar-track": { my: 5 },
       }}
     >
-      <Column />
-      <Column />
+      {cols?.map((c) => (
+        <Column key={c._id} colData={c} />
+      ))}
+
       <Box
         sx={{
           minWidth: 300,

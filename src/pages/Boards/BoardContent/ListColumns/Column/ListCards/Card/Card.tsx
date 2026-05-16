@@ -7,7 +7,16 @@ import GroupIcon from "@mui/icons-material/Group";
 import AttachmentIcon from "@mui/icons-material/Attachment";
 import CommentIcon from "@mui/icons-material/Comment";
 import { Typography } from "@mui/material";
-const Card = () => {
+import { Card as CardType } from "@/constants/types/BoardType";
+type CardProps = {
+  card: CardType;
+};
+const Card = ({ card }: CardProps) => {
+  const { title, cover, attachments, comments, description, memberIds } = card;
+
+  const shouldShowActionButton = () => {
+    return !!attachments.length || !!comments.length || !!memberIds.length;
+  };
   return (
     <MUICard
       sx={{
@@ -17,37 +26,37 @@ const Card = () => {
         overflow: "unset",
       }}
     >
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="140"
-        image="https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp
-              "
-      />
+      {cover && (
+        <CardMedia component="img" alt={title} height="150" image={cover} />
+      )}
       <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
+        <Typography gutterBottom variant="h6" component="div" sx={{ m: 0 }}>
+          {title}
         </Typography>
       </CardContent>
-      <CardActions
-        sx={{
-          p: " 0 4px 8px 4px ",
-          borderTop: 1,
-          borderColor: "border",
-          pt: 1,
-          borderRadius: 0.5,
-        }}
-      >
-        <Button size="small" startIcon={<GroupIcon />}>
-          20
-        </Button>
-        <Button size="small" startIcon={<CommentIcon />}>
-          15
-        </Button>
-        <Button size="small" startIcon={<AttachmentIcon />}>
-          15
-        </Button>
-      </CardActions>
+      {shouldShowActionButton() && (
+        <CardActions
+          sx={{
+            p: "0 4px 8px 4px",
+          }}
+        >
+          {!!memberIds?.length && (
+            <Button size="small" startIcon={<GroupIcon />}>
+              {memberIds.length}
+            </Button>
+          )}
+          {!!comments?.length && (
+            <Button size="small" startIcon={<CommentIcon />}>
+              {comments.length}
+            </Button>
+          )}
+          {!!attachments?.length && (
+            <Button size="small" startIcon={<AttachmentIcon />}>
+              {attachments.length}
+            </Button>
+          )}
+        </CardActions>
+      )}
     </MUICard>
   );
 };

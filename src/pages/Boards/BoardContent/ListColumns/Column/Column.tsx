@@ -21,8 +21,15 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListCards from "./ListCards/ListCards";
+import { Column as ColumnType } from "@/constants/types/BoardType";
+import { mapOrder } from "@/utils/sort";
+type ColumnProps = {
+  colData: ColumnType;
+};
+const Column = ({ colData }: ColumnProps) => {
+  const { boardId, cardOrderIds, cards, title, _id } = colData;
+  const orderedCard = mapOrder(cards, cardOrderIds, "_id");
 
-const Column = () => {
   const id = React.useId();
   const buttonId = `${id}-button-workspaces`;
   const menuId = `${id}-menu-workspaces`;
@@ -42,7 +49,7 @@ const Column = () => {
         backgroundColor: (theme) =>
           theme.palette.mode === "dark"
             ? "rgba(255, 255, 255, 0.05)"
-            : "rgba(0, 0, 0, 0.05)",
+            : "rgba(0, 0, 0, 0.15)",
         backdropFilter: "blur(4px)",
         ml: 2,
         borderRadius: 1,
@@ -60,7 +67,7 @@ const Column = () => {
           justifyContent: "space-between",
         }}
       >
-        <Typography sx={{ fontWeight: "bold" }}>Col</Typography>
+        <Typography sx={{ fontWeight: "bold" }}>{title}</Typography>
         <Box>
           <Tooltip title="More Options">
             <ExpandMoreIcon
@@ -121,7 +128,7 @@ const Column = () => {
         </Box>
       </Box>
       {/* LIST CARD */}
-      <ListCards />
+      <ListCards cards={orderedCard} />
       {/* footer */}
       <Box
         sx={{
