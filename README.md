@@ -1,87 +1,35 @@
-### Bộ code base để bắt đầu học khóa Full Stack MERN Pro (HỌC PHẦN FRONT-END: REACTJS - MATERIAL UI - REDUX...vv) - Lập Trình qua dự án thực tế Trello Clone trên kênh YouTube TrungQuanDev của mình nhé các bạn!
-### Base project for my Full Stack MERN Pro Course - Build Trello App on YouTube!
+# Trello Clone - MERN Stack Project
 
-- Playlist khóa Pro: https://www.youtube.com/playlist?list=PLP6tw4Zpj-RJP2-YrhtkWqObMQ-AA4TDy
+Một ứng dụng quản lý công việc (Task Management) chuyên nghiệp được xây dựng theo phong cách Trello, tập trung vào trải nghiệm người dùng mượt mà và cấu trúc code chuẩn chỉnh.
 
-- Playlist khóa Advanced: https://youtube.com/playlist?list=PLP6tw4Zpj-RJbPQfTZ0eCAXH_mHQiuf2G&si=zmt9y6TYo-e3sIwv
+## 🚀 Tính năng nổi bật
 
-### Hướng dẫn clone Repo code này về máy các bạn chuẩn nhất ở video này:
+- **Giao diện hiện đại:** Xây dựng trên nền tảng **Material UI (MUI v6)**.
+- **Dark/Light Mode:** Hỗ trợ chuyển đổi giao diện sáng/tối mượt mà qua `CssVarsProvider`.
+- **Quản lý Board:** Cấu trúc Columns và Cards lồng nhau theo chuẩn dữ liệu thực tế.
+- **Tối ưu Layout:** Hệ thống scroll riêng biệt cho từng Column và Board, không gây tràn trang.
+- **Clean Code:** Tổ chức thư mục rõ ràng, dễ bảo trì và mở rộng.
 
-- Semantic Versioning là gì? Lưu ý Quan Trọng về bộ Code Base của dự án. Link: https://youtu.be/lUfsTj45Uys
+## 🛠 Công nghệ sử dụng
 
----
+- **Core:** ReactJS (Vite), TypeScript.
+- **UI:** Material UI v6, Emotion, Lucide Icons.
+- **Styling:** CSS-in-JS (MUI Style System).
+- **Helper:** Lodash, Dayjs, Axios.
 
-### 🎁 DOWNLOAD FULL SOURCE CODE của toàn bộ dự án (Pro & Advanced) cũng như Donate ủng hộ mình ly cafe nếu bạn muốn 🤝
+## 📁 Cấu trúc thư mục tiêu biểu
 
-👉 Đầu tiên cần phải làm rõ một điều: Mình KHÔNG BÁN CODE cũng như KHÔNG BÁN KHÓA HỌC gì ở đây hết. Bởi vì mình đã cung cấp đầy đủ mọi tài nguyên cần thiết cho trường hợp bạn muốn học FREE Miễn Phí từ đầu rồi.
+| Thư mục            | Chức năng                                                     |
+| :----------------- | :------------------------------------------------------------ |
+| `src/theme.ts`     | Cấu hình Dark/Light mode và định dạng chung (MUI Theme)       |
+| `src/pages/Boards` | Quản lý logic và giao diện trang Board chi tiết               |
+| `src/components`   | Chứa các thành phần dùng chung (AppBar, Modal, v.v.)          |
+| `src/utils`        | Các hàm xử lý logic format, tính toán                         |
+| `src/types`        | Định nghĩa TypeScript Interface cho dữ liệu Board/Column/Card |
 
-👉 ĐIỀU QUAN TRỌNG TIẾP THEO: Bạn cần phải hiểu rõ về lý do tại sao mình lại chia ra 3 gói Donate cũng như sự khác nhau giữa 3 gói này là gì. Mọi thông tin mình đều đã công khai ở bài viết trên blog chính chủ từ mình nhé, bởi vì nội dung khá dài. Bạn nên dành thời gian đọc nó trước khi bắt đầu khóa học cực kỳ chất lượng này.
+## ⚙️ Cài đặt dự án
 
-👉 Link bài viết: 👇
-
-🌐 https://trungquandev.com/khoa-hoc-lap-trinh-full-stack-mern-100-du-an-thuc-te-chat-luong/
-
-**🥉 FREE PACK (No Sponsor)**
-
-• 🌟 Download on Ko-fi: https://ko-fi.com/s/8e56e2c5d0
-
-• 🌟 Download on Buy Me a Coffee: https://buymeacoffee.com/codetq/e/318762
-
-**🥈 GOLD PACK (Gold Sponsor)**
-
-• 🌟 Download on Ko-fi: https://ko-fi.com/s/e41c325ca4
-
-• 🌟 Download on Buy Me a Coffee: https://buymeacoffee.com/codetq/e/191152
-
-**🥇 DIAMOND PACK (Diamond Sponsor - VIP)**
-
-• 🌟 Download on Ko-fi: https://ko-fi.com/s/27670843df
-
-• 🌟 Download on Buy Me a Coffee: https://buymeacoffee.com/codetq/e/318750
-
-**🏆 HOẶC NẾU BẠN KHÔNG CÓ THẺ VISA THANH TOÁN QUỐC TẾ THÌ CÓ THỂ LIÊN HỆ TRỰC TIẾP VỚI MÌNH TẠI ĐÂY ĐỂ LẤY TÀI NGUYÊN HỌC TẬP NHÉ 👇**
-
-**🌐 Facebook TrungQuanDev: 👉 https://facebook.com/trungquandev**
-
-**👑 Lưu ý: Video hướng dẫn chi tiết cách Install Source Code (Pro & Advanced) đều đã có trong 2 Playlists của khóa học rồi nhé.**
-
----
-
-### Requirements - Thông tin của bộ Code Base này - Chuẩn các phiên bản dưới đây để bắt đầu học: (Semantic Versioning)
-
-```
-* nodejs >= 18.16.0
-* npm = v9.5.1
-* yarn = v1.22.19
-
-* "react": "^18.2.0"
-* "react-dom": "^18.2.0"
-* "@types/react": "^18.0.28"
-* "@types/react-dom": "^18.0.11"
-
-* "vite": "^4.3.2"
-* "@vitejs/plugin-react-swc": "^3.0.0"
-
-* "eslint": "^8.38.0"
-* "eslint-plugin-react": "^7.32.2"
-* "eslint-plugin-react-hooks": "^4.6.0"
-* "eslint-plugin-react-refresh": "^0.3.4"
-```
-
-### About Me - Thông tin về mình:
-
-Author: **Trungquandev - Một Lập Trình Viên** && **CodeTQ - ASMR Programming**
-
-Blog: https://trungquandev.com/
-
-CV: https://cv.trungquandev.com/
-
-YouTube 01 (Trungquandev - Một Lập Trình Viên): https://www.youtube.com/@trungquandev
-
-YouTube 02 (CodeTQ - ASMR Programming): https://www.youtube.com/@code-tq
-
-"Learning new everyday not the copycat of yesterday!"
-
-"A bit of fragrance clings to the hand that gives flowers!"
-
-Thanks for watching!
+1. **Clone project:**
+   ```bash
+   git clone [https://github.com/your-username/trello-clone-mern.git](https://github.com/your-username/trello-clone-mern.git)
+   ```
