@@ -5,8 +5,6 @@ type ListCardProps = {
   cards: CardType[];
 };
 const ListCards = ({ cards }: ListCardProps) => {
-  console.log(cards);
-
   return (
     <Box
       sx={{
@@ -37,8 +35,8 @@ const ListCards = ({ cards }: ListCardProps) => {
         },
       }}
     >
-      {cards.map((c) => (
-        <Card key={c._id} card={c} />
+      {cards.map((c, index) => (
+        <Card key={c._id} card={c} index={index} />
       ))}
     </Box>
   );

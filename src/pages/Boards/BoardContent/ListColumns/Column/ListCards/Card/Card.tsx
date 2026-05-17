@@ -8,17 +8,39 @@ import AttachmentIcon from "@mui/icons-material/Attachment";
 import CommentIcon from "@mui/icons-material/Comment";
 import { Typography } from "@mui/material";
 import { Card as CardType } from "@/constants/types/BoardType";
+import { useSortable } from "@dnd-kit/react/sortable";
+import { CSS } from "@dnd-kit/utilities";
 type CardProps = {
   card: CardType;
+  index: number;
+  isOverlayPreview: boolean;
 };
-const Card = ({ card }: CardProps) => {
+const Card = ({ card, index, isOverlayPreview }: CardProps) => {
   const { title, cover, attachments, comments, description, memberIds } = card;
-
+  const { ref, transform, transition, attributes, listeners, isDragging }: any =
+    useSortable({
+      id: card._id,
+      index,
+      type: "card",
+      data: { data: card },
+    });
   const shouldShowActionButton = () => {
     return !!attachments.length || !!comments.length || !!memberIds.length;
   };
+  const style = {
+    transform: isOverlayPreview ? undefined : CSS.Translate.toString(transform),
+    transition,
+    opacity: isDragging && !isOverlayPreview ? 0.4 : 1,
+    boxShadow: isOverlayPreview ? "0px 10px 20px rgba(0,0,0,0.3)" : "none",
+    zIndex: isDragging ? 100 : "auto",
+    touchAction: "none",
+  };
   return (
     <MUICard
+      ref={ref}
+      style={style}
+      {...(isOverlayPreview ? {} : attributes)}
+      {...(isOverlayPreview ? {} : listeners)}
       sx={{
         maxWidth: 345,
         cursor: "pointer",

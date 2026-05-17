@@ -1,16 +1,13 @@
-import React from "react";
-
 import { Box, Button } from "@mui/material";
 import Column from "./Column/Column";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import { Column as ColumnType } from "@/constants/types/BoardType";
-import { log } from "node:console";
+
 type ListColumnsProps = {
   cols: ColumnType[];
 };
-const ListColumns = ({ cols }: ListColumnsProps) => {
-  // console.log(cols);
 
+const ListColumns = ({ cols }: ListColumnsProps) => {
   return (
     <Box
       sx={{
@@ -23,8 +20,13 @@ const ListColumns = ({ cols }: ListColumnsProps) => {
         "&::-webkit-scrollbar-track": { my: 5 },
       }}
     >
-      {cols?.map((c) => (
-        <Column key={c._id} colData={c} />
+      {cols?.map((c, index) => (
+        <Column
+          key={c._id}
+          colData={c}
+          index={index}
+          isOverlayPreview={false}
+        />
       ))}
 
       <Box
@@ -34,7 +36,6 @@ const ListColumns = ({ cols }: ListColumnsProps) => {
           alignContent: "flex-start",
           alignItems: "flex-start",
           mx: 2,
-
           height: (theme) => theme.trello.columnHeaderHeight,
           borderRadius: 1,
           backgroundColor: (theme) =>
